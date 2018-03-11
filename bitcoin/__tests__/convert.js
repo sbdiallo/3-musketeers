@@ -112,3 +112,19 @@ test('should allow untest aliases', () => {
    expect(convert(4.6, 'Satoshi', 'sat')).toEqual(4.6);
    expect(convert(4.6, 'μBTC', 'btest')).toEqual(4.6);
 });
+
+/* additional tests to cover 80% */
+//remove an unit
+test('should remove an unit', () => {
+  convert.removeUnit('BTC');
+  expect(convert.units().includes('BTC')).not.toBeTruthy();
+});
+
+//add an unit
+test('should add an unit', () => {
+  convert.addUnit('BTC', 0.1);
+  expect(convert.units().includes('BTC')).toBeTruthy();
+});
+
+
+
