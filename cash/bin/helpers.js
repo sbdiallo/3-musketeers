@@ -1,4 +1,5 @@
 /*eslint-disable no-process-exit*/
+
 const chalk = require('chalk');
 const updateNotifier = require('update-notifier');
 const Conf = require('conf');
@@ -8,6 +9,10 @@ const config = new Conf();
 
 updateNotifier({pkg}).notify();
 
+/***
+ * saveCurrencies() function allows to save default currencies.
+ * @param {array}: represent the list of currencies.
+***/
 const saveCurrencies = argv => {
   config.set('defaultFrom', argv[1] || config.get('defaultFrom', 'USD'));
   config.set(
@@ -20,11 +25,21 @@ const saveCurrencies = argv => {
   process.exit(1);
 };
 
+
+
+/***
+ * version() function allows to print the version of the package.
+***/
 const version = () => {
   console.log(pkg.version);
   process.exit(1);
 };
 
+
+/***
+ * help() function allow to print the helper with the different commands: e.g. save, help, version, 
+   etc.
+***/
 const help = () => {
   console.log(`
 Usage:
@@ -57,6 +72,10 @@ Examples:
   process.exit(1);
 };
 
+
+/***
+ * helpers() function allows to print the helper with the different commands.
+***/
 const helpers = argv => {
   // Version
   if (argv.indexOf('--version') !== - 1 || argv.indexOf('-v') !== - 1) {
